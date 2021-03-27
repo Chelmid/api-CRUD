@@ -1,30 +1,77 @@
-import { useEffect, useState } from "react"
-import { useParams } from "react-router"
+import CustomerDetailGeneral from "./CustomerDetailGeneral"
+import CustomerDetailAdresse from "./CustomerDetailAdresse"
+import CustomerDetailContact from "./CustomerDetailContact"
+import CustomerDetailDocs from "./CustomerDetailDocs"
+import { useState } from "react"
 
 const CustomerDetail = () => {
 
-    const customer = useParams('id')
-    const [customerInfos, setCustomerInfos] = useState([])
+    const [selectOnglet, setSelectOnglet] = useState(
+        {
+            general : true,
+            contact : false,
+            adresse : false,
+            document : false 
+        }
+    )
 
-    useEffect(() => {
-        fetch('https://app.tacbox.fr/api/customers/' + customer.id).then(response => response.json()).then(data => setCustomerInfos([data]))
-    }, [customer.id])
+    const ongletGeneral = () => {
 
-    console.log(customerInfos)
+        setSelectOnglet(
+            {
+                general : true,
+                contact : false,
+                adresse : false,
+                document : false 
+            }
+        )
+    }
+
+    const ongletContact = () => {
+        setSelectOnglet(
+            {
+                general : false,
+                contact : true,
+                adresse : false,
+                document : false 
+            }
+        )
+    }
+
+    const ongletAdresse = () => {
+        setSelectOnglet(
+            {
+                general : false,
+                contact : false,
+                adresse : true,
+                document : false 
+            }
+        )
+    }
+
+    const ongletDocument = () => {
+        setSelectOnglet(
+            {
+                general : false,
+                contact : false,
+                adresse : false,
+                document : true 
+            }
+        )
+    }
 
     return (
-        <>
-            {customerInfos.map(customerInfo =>
-                <div key={customerInfo.id}>
-                    <div>Numéro du client : {customerInfo.id}</div>
-                    <div>Nom : {customerInfo.firstName}</div>
-                    <div>Prénom : {customerInfo.lastName}</div>
-                    <div>Email : {customerInfo.email}</div>
-                    <div>Téléphone : {customerInfo.tel}</div>
-                    <div>Nom de l'entreprise : {customerInfo.company}</div>
-                </div>
-            )}
-
+        <>  
+            <div className='onglets'>
+                <div className='onglet-name' onClick={ongletGeneral}>General</div>
+                <div className='onglet-name' onClick={ongletContact}>Contact</div>
+                <div className='onglet-name' onClick={ongletAdresse}>Adresse</div>
+                <div className='onglet-name' onClick={ongletDocument}>Document</div>
+            </div>
+            {selectOnglet.general && (<CustomerDetailGeneral />)}
+            {selectOnglet.adresse && (<CustomerDetailAdresse />)}
+            {selectOnglet.contact && (<CustomerDetailContact />)}
+            {selectOnglet.document && (<CustomerDetailDocs />)}
         </>
     )
 }

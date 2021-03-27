@@ -40,9 +40,33 @@
 .ligne {
   display: flex;
   /*flex-wrap: wrap;*/
+  background-color: aliceblue;
+  border: 1px solid lightgray;
 }
 
 .field {
   height: 30px;
   width: 200px;
+}
+
+.details-infos{
+  margin: 10px 0px 10px 20px;
+}
+
+.onglets {
+  display: flex;
+}
+
+.onglet-name {
+  height: 20px;
+  width: 100px;
+}
+
+.block-contact {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.form-add-customer {
+  display: flex;
 }

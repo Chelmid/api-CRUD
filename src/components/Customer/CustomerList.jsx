@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from "react-router-dom";
 import AddCustomer from '../Customer/AddCustomer'
+import { useHistory } from "react-router-dom";
 
 
 const CustomerList = () => {
@@ -9,13 +10,14 @@ const CustomerList = () => {
     const [displaymemberList, setDisplaymemberList] = useState(true)
     const addressAPI = 'https://app.tacbox.fr/api/customers'
     const [displayFromAddCustomer, setDisplayFromAddCustomer] = useState(false)
+    const history = useHistory();
 
     useEffect(() => {
         fetch(addressAPI).then(response => response.json()).then(data => setMembers(data['hydra:member']))
-        console.log(members)
         window.location.pathname.includes("customer") ? setDisplaymemberList(false) : setDisplaymemberList(true)
-    },[])
-
+        console.log(members)
+    }, [])
+    console.log(members)
     const addCustomer = () => {
         displayFromAddCustomer === true ? setDisplayFromAddCustomer(false) : setDisplayFromAddCustomer(true)
         console.log('click')
@@ -25,13 +27,19 @@ const CustomerList = () => {
         setDisplaymemberList(false)
     }
 
+    const customerDisplayList = () => {
+        setDisplaymemberList(true)
+        history.push('/')
+    }
+
     return (
 
         <>
+            <h2 onClick={customerDisplayList}>Clients</h2>
             { displaymemberList && (
                 <>
-                {displayFromAddCustomer && (<AddCustomer />)}
-                <button onClick={() => addCustomer()}> + </button>
+                    <button onClick={() => addCustomer()}> add client </button>
+                    {displayFromAddCustomer && (<AddCustomer />)}
                     <div className="ligne">
                         <div className='field'>ID</div>
                         <div className='field'>Nom</div>

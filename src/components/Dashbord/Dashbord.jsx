@@ -7,9 +7,8 @@ const Dashbord = () => {
 
     return (
         <Router>
-        <div className=''>
-            <h2>Clients</h2>
-                <CustomerList />
+            <div className=''>
+                <CustomerList display={true} />
                 <Switch>
                     <Route path="/customer/:id" component={CustomerDetail} />
                 </Switch>
