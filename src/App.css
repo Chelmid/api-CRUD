@@ -39,7 +39,7 @@
 
 .ligne {
   display: flex;
-  /*flex-wrap: wrap;*/
+  flex-wrap: wrap;
   background-color: aliceblue;
   border: 1px solid lightgray;
 }
@@ -69,4 +69,16 @@
 
 .form-add-customer {
   display: flex;
+  flex-wrap: wrap;
+}
+
+.taille-field {
+  width: 190px;
+  height: auto;
+}
+
+.taille-btn {
+  width: 190px;
+  height: auto;
+  align-self: flex-end;
 }

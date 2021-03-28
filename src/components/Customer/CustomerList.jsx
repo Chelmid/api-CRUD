@@ -8,12 +8,19 @@ const CustomerList = () => {
 
     const [members, setMembers] = useState([])
     const [displaymemberList, setDisplaymemberList] = useState(true)
+    const [customerTotal, setCustomerTotal] = useState('')
     const addressAPI = 'https://app.tacbox.fr/api/customers'
     const [displayFromAddCustomer, setDisplayFromAddCustomer] = useState(false)
     const history = useHistory();
 
     useEffect(() => {
-        fetch(addressAPI).then(response => response.json()).then(data => setMembers(data['hydra:member']))
+        fetch(addressAPI)
+            .then(response => response.json())
+            .then(data => {
+                setMembers(data['hydra:member'])
+                setCustomerTotal(data['hydra:totalItems'])
+            })
+
         window.location.pathname.includes("customer") ? setDisplaymemberList(false) : setDisplaymemberList(true)
         console.log(members)
     }, [])
@@ -40,6 +47,9 @@ const CustomerList = () => {
                 <>
                     <button onClick={() => addCustomer()}> add client </button>
                     {displayFromAddCustomer && (<AddCustomer />)}
+
+                    <div>{'total de clients : ' + customerTotal}</div>
+
                     <div className="ligne">
                         <div className='field'>ID</div>
                         <div className='field'>Nom</div>

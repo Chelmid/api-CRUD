@@ -1,8 +1,8 @@
-import CustomerDetailGeneral from "./CustomerDetailGeneral"
-import CustomerDetailAdresse from "./CustomerDetailAdresse"
-import CustomerDetailContact from "./CustomerDetailContact"
-import CustomerDetailDocs from "./CustomerDetailDocs"
-import { useState } from "react"
+import CustomerDetailGeneral from "./CustomerDetailGeneral";
+import CustomerDetailAdresse from "./CustomerDetailAdresse";
+import CustomerDetailContact from "./CustomerDetailContact";
+import CustomerDetailDocs from "./CustomerDetailDocs";
+import { useState } from "react";
 
 const CustomerDetail = () => {
 

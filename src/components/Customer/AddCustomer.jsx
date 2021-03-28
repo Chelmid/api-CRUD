@@ -1,22 +1,16 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import axios from 'axios';
 
 const AddCustomer = () => {
 
-  const addressAPI = 'https://app.tacbox.fr/api/customers'
+  const addressAPI = 'https://app.tacbox.fr/api/customers';
 
-  const [firstName, setFirstName] = useState('')
-  const [lastName, setLastName] = useState('')
-  const [email, setEmail] = useState('')
-  const [tel, setTel] = useState('')
-  const [company, setCompany] = useState('')
-  const [mobile, setMobile] = useState('')
-  const [website, setWebsite] = useState('')
+  const [message, setMessage] = useState('');
+  const [styles, setStyles] = useState({});
 
   const postCustomer = (e) => {
 
-    console.log('post')
-    e.preventDefault()
+    e.preventDefault();
 
     axios.post(addressAPI,
       {
@@ -26,16 +20,17 @@ const AddCustomer = () => {
           "/api/customer_addresses/65"
         ],
         "purchases": [],
+        "customerContacts": [],
         "customerType": "/api/customer_types/1",
-        "company": company,
+        "company": e.target.company.value,
         "companyID": "123456789",
-        "website": website,
-        "tel": tel,
-        "email": email,
-        "mobile": mobile,
+        "website": e.target.website.value,
+        "tel": e.target.tel.value,
+        "email": e.target.email.value,
+        "mobile": e.target.mobile.value,
         "password": "blabla",
-        "firstName": firstName,
-        "lastName": lastName,
+        "firstName": e.target.firstName.value,
+        "lastName": e.target.lastName.value,
         "hasAccount": true,
         "billingType": "/api/billing_types/1",
         "gender": "/api/genders/2",
@@ -43,45 +38,54 @@ const AddCustomer = () => {
         "birthDate": "2021-03-26T23:32:12.782Z",
         "etat": true
       }
-    ).then(response => console.log(response)).catch(function (error) {
-      console.log(error);
+    ).then(() => {
+      setMessage('Le nouveau client  est bien crée')
+      setStyles({
+        color: 'green'
+      })
+    }).catch((error) => {
+      setMessage('Une erreur est survenu');
+      setStyles({
+        color: 'green'
+      })
     });
   }
 
   return (
     <div>
       <p>ajouter nouveau client</p>
-      <form className='form-add-customer'>
-        <div>
+      <div style={styles}>{message}</div>
+      <form className='form-add-customer' onSubmit={postCustomer}>
+        <div className='taille-field'>
           <label htmlFor="">firstname</label>
-          <input type="text" name="firstName" id="firstName" onChange={e => setFirstName(e.target.value)} />
+          <input type="text" name="firstName" id="firstName" />
         </div>
-        <div>
+        <div className='taille-field'>
           <label htmlFor="">lastname</label>
-          <input type="text" name="lastName" id="lastName" onChange={e => setLastName(e.target.value)} />
+          <input type="text" name="lastName" id="lastName" />
         </div>
-        <div>
+        <div className='taille-field'>
           <label htmlFor="">email</label>
-          <input type="email" name="email" id="email" onChange={e => setEmail(e.target.value)} />
+          <input type="email" name="email" id="email" />
         </div>
-        <div>
+        <div className='taille-field'>
           <label htmlFor="">tel</label>
-          <input type="tel" name="tel" id="tel" onChange={e => setTel(e.target.value)} />
+          <input type="tel" name="tel" id="tel" />
         </div>
-        <div>
+        <div className='taille-field'>
           <label htmlFor="">company</label>
-          <input type="text" name="company" id="company" onChange={e => setCompany(e.target.value)} />
+          <input type="text" name="company" id="company" />
         </div>
-        <div>
+        <div className='taille-field'>
           <label htmlFor="">mobile</label>
-          <input type="text" name="mobile" id="company" onChange={e => setMobile(e.target.value)} />
+          <input type="text" name="mobile" id="company" />
         </div>
-        <div>
+        <div className='taille-field'>
           <label htmlFor="">website</label>
-          <input type="text" name="website" id="company" onChange={e => setWebsite(e.target.value)} />
+          <input type="text" name="website" id="company" />
         </div>
-        <div>
-        <button onClick={postCustomer}>valider</button>
+        <div className='taille-btn'>
+          <button>valider</button>
         </div>
 
       </form>

@@ -1,18 +1,18 @@
-import { useEffect, useState } from "react"
-import { useParams } from "react-router"
+import { useEffect, useState } from "react";
+import { useParams } from "react-router";
 import axios from 'axios';
 
 const CustomerDetailAdresse = () => {
 
     const customer = useParams('id')
-    const [adresseCustomers, setadresseCustomer] = useState([])
-    const [customerAdresseId, setCustomerAdresseId] = useState()
+    const [adresseCustomers, setadresseCustomer] = useState([]);
+    const [customerAdresseId, setCustomerAdresseId] = useState();
 
-    const adresseAPI = "https://app.tacbox.fr/api/customers/" + customer.id + "/customer_addresses"
+    const adresseAPI = "https://app.tacbox.fr/api/customers/" + customer.id + "/customer_addresses";
 
     useEffect(() => {
-        fetch(adresseAPI).then(res => res.json()).then(data => setadresseCustomer(data['hydra:member']))
-        adresseCustomers.map((adresseCustomer) => setCustomerAdresseId(adresseCustomer))
+        fetch(adresseAPI).then(res => res.json()).then(data => setadresseCustomer(data['hydra:member']));
+        adresseCustomers.map((adresseCustomer) => setCustomerAdresseId(adresseCustomer));
     }, [])
 
     const putadresse = (e) => {

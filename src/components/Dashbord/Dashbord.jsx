@@ -1,7 +1,7 @@
-import React from 'react'
-import CustomerList from '../Customer/CustomerList'
+import React from 'react';
+import CustomerList from '../Customer/CustomerList';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import CustomerDetail from '../Customer/CustomerDetail.jsx'
+import CustomerDetail from '../Customer/CustomerDetail.jsx';
 
 const Dashbord = () => {
 
