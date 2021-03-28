@@ -1,42 +1,41 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
 import AddCustomer from '../Customer/AddCustomer'
 import { useHistory } from "react-router-dom";
 
-
 const CustomerList = () => {
 
-    const [members, setMembers] = useState([])
-    const [displaymemberList, setDisplaymemberList] = useState(true)
-    const [customerTotal, setCustomerTotal] = useState('')
-    const addressAPI = 'https://app.tacbox.fr/api/customers'
-    const [displayFromAddCustomer, setDisplayFromAddCustomer] = useState(false)
+    const [members, setMembers] = useState([]);
+    const [displaymemberList, setDisplaymemberList] = useState(true);
+    const [customerTotal, setCustomerTotal] = useState('');
+    const addressAPI = 'https://app.tacbox.fr/api/customers';
+    const [displayFromAddCustomer, setDisplayFromAddCustomer] = useState(false);
     const history = useHistory();
 
     useEffect(() => {
+        //appelle de l'api et de save dans des states
         fetch(addressAPI)
             .then(response => response.json())
             .then(data => {
-                setMembers(data['hydra:member'])
-                setCustomerTotal(data['hydra:totalItems'])
+                setMembers(data['hydra:member']);
+                setCustomerTotal(data['hydra:totalItems']);
             })
-
-        window.location.pathname.includes("customer") ? setDisplaymemberList(false) : setDisplaymemberList(true)
-        console.log(members)
+        // verifié URL si customer est présent ou pas
+        window.location.pathname.includes("customer") ? setDisplaymemberList(false) : setDisplaymemberList(true);
     }, [])
-    console.log(members)
+
     const addCustomer = () => {
-        displayFromAddCustomer === true ? setDisplayFromAddCustomer(false) : setDisplayFromAddCustomer(true)
-        console.log('click')
+        //affichage du formulaire add customer
+        displayFromAddCustomer === true ? setDisplayFromAddCustomer(false) : setDisplayFromAddCustomer(true);
     }
 
     const customerDisplayDetail = () => {
-        setDisplaymemberList(false)
+        setDisplaymemberList(false);
     }
 
     const customerDisplayList = () => {
-        setDisplaymemberList(true)
-        history.push('/')
+        setDisplaymemberList(true);
+        history.push('/');
     }
 
     return (

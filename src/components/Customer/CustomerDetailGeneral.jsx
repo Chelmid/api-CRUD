@@ -18,9 +18,6 @@ const CustomerDetailGeneral = () => {
     const putCustomer = (e) => {
         e.preventDefault();
 
-
-        console.log(e.target.firstName.value)
-
         axios.put(addressAPI + customer.id,
             {
                 "customerAddresses": [

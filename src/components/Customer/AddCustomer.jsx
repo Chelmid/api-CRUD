@@ -11,7 +11,6 @@ const AddCustomer = () => {
   const postCustomer = (e) => {
 
     e.preventDefault();
-
     axios.post(addressAPI,
       {
         "customerAddresses": [
