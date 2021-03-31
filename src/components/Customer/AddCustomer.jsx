@@ -9,7 +9,7 @@ const AddCustomer = () => {
   const [styles, setStyles] = useState({});
 
   const postCustomer = (e) => {
-
+    //post cree un customer
     e.preventDefault();
     axios.post(addressAPI,
       {
