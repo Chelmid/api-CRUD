@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
+// ajouter un nouveau customer avec l api
 const AddCustomer = () => {
 
   const addressAPI = 'https://app.tacbox.fr/api/customers';
