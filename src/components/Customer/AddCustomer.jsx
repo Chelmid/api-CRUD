@@ -39,11 +39,13 @@ const AddCustomer = () => {
         "etat": true
       }
     ).then(() => {
+      //valide
       setMessage('Le nouveau client  est bien crée')
       setStyles({
         color: 'green'
       })
     }).catch((error) => {
+      //error
       setMessage('Une erreur est survenu');
       setStyles({
         color: 'green'
